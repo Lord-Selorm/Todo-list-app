@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A professional To-Do List application to manage your daily tasks efficiently">
+    <title>TaskFlow | Modern To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB1klEQVR4nO2WPU7DQBCFv7V3YxIhJEEiQkJC4gAchBNwBA7AAbgAR+AEHICTcAROQKQ0FBIKCQmJhIRI7CSO7V0a7zq7TuwkRqLgS6P17s7OfDPvzcw6fPElgMvAOXABjIEh8AzcA4/AW9WgVQDOgGvgG3gF+oXyC7gBLoHjXQBOgQfgA/gA7oBz4CgH0QOugFfgHXgGzoBmEaQJXALPwBvwBJwAjSJIA7gA+kAfuAc6wD7QBMbAqAgwB3oW5B44BQ6APeAQeABGQK8I8A7cWpBzYL9Qtw10gQnwWAR4A+4syAmwV6jbAbpAH3gqArwCt0AH2CvR3Qe6wAB4LgK8AHfAMbBboruXAxgCL0WAF+AOOCrR3Qe6wBB4LQK8AHfAEbBborsPdIEh8FYEeAbugDayTLcDdIEh8F4EeALugUOgVaK7D3SBIfBRBHgE7oF9oFmiuw90gSHwWQR4AO6BfaBZorsPdIEh8FkEeADugX2gWaK7D3SBIfBZBHgE7oF9oFmiuw90gSHwWQR4AO6BfaBZorsPdIEh8FkEeADugX2gWaK7D3SBIfBZBHgA7oF9oFmiuw90gSHwWQR4AO6BfaBZorsPdIEh8FkEeADugX2gWaK7D3SBIfBZBHgA7oF9oFmiuw90gSHwWQR4AO6BfaBZorsPdIEh8FkEeADugX2gWaK7D3SBIfBZBHgA7oF9oFmiuw90gSHwWQR4AO6BfaBZorsPdIEh8FkEeADugX2gWaK7D3SBIfBZBHgA7oF9oFmiuw90gSHwWQT4D4BfYw3z1fXeAAAAAElFTkSuQmCC">
+</head>
+<body>
+    <div class="container">
+        <h1>TaskFlow</h1>
+        <div class="todo-app">
+            <div class="app-header">
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+            
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <input type="text" id="todo-input" placeholder="What needs to be done?" autocomplete="off">
+                    <button id="add-btn" aria-label="Add task">
+                        <span>Add Task</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="todo-container">
+                <div class="loading-state" id="loading">
+                    <div class="spinner"></div>
+                    <p>Loading your tasks...</p>
+                </div>
+                
+                <ul id="todo-list" class="todo-list">
+                    <!-- Tasks will be added here dynamically -->
+                </ul>
+                
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-illustration">
+                        <svg width="180" height="180" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="32" y="56" width="136" height="128" rx="8" fill="#F0F4FF"/>
+                            <rect x="32" y="56" width="136" height="32" rx="8" fill="#4F46E5" fill-opacity="0.1"/>
+                            <rect x="48" y="72" width="8" height="8" rx="4" fill="#4F46E5"/>
+                            <rect x="64" y="72" width="8" height="8" rx="4" fill="#4F46E5"/>
+                            <rect x="48" y="112" width="104" height="8" rx="4" fill="#E5E7EB"/>
+                            <rect x="48" y="128" width="80" height="8" rx="4" fill="#E5E7EB"/>
+                            <rect x="48" y="160" width="64" height="8" rx="4" fill="#E5E7EB"/>
+                            <rect x="48" y="176" width="88" height="8" rx="4" fill="#E5E7EB"/>
+                            <path d="M40 56C40 51.5817 43.5817 48 48 48H184C188.418 48 192 51.5817 192 56V64H40V56Z" fill="#4F46E5" fill-opacity="0.2"/>
+                        </svg>
+                    </div>
+                    <div class="empty-content">
+                        <h3>No tasks yet</h3>
+                        <p>Create your first task to get started. What would you like to accomplish today?</p>
+                        <button class="btn-primary" id="add-first-task">
+                            <i class="fas fa-plus"></i>
+                            <span>Add First Task</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="todo-actions">
+                <div class="stats" id="todo-stats">
+                    <span id="active-count">0</span> tasks left
+                    <span class="divider">•</span>
+                    <span id="completed-count">0</span> completed
+                </div>
+                
+                <div class="filters" id="filters">
+                    <button type="button" class="filter-btn active" data-filter="all">All</button>
+                    <button type="button" class="filter-btn" data-filter="pending">Active</button>
+                    <button type="button" class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+                
+                <button type="button" class="clear-btn" id="clear-completed">
+                    <i class="fas fa-trash-alt"></i>
+                    Clear Completed
+                </button>
+            </div>
+        </div>
+        
+        <footer class="app-footer">
+            <p>TaskFlow &copy; 2025 | Drag and drop to reorder tasks</p>
+        </footer>
+    </div>
+    
+    <div class="toast" id="toast"></div>
+    
+    <!-- Reminder Modal -->
+    <div class="modal" id="reminder-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Set Reminder</h3>
+                <button class="close-btn" id="close-reminder-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="reminder-date">Date</label>
+                    <input type="date" id="reminder-date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="reminder-time">Time</label>
+                    <input type="time" id="reminder-time" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="reminder-repeat">Repeat</label>
+                    <select id="reminder-repeat" class="form-control">
+                        <option value="none">Does not repeat</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-secondary" id="cancel-reminder">Cancel</button>
+                    <button class="btn btn-primary" id="save-reminder">Set Reminder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
