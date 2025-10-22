@@ -8,9 +8,7 @@ A sleek, responsive, and feature-rich To-Do List application built with vanilla 
 
 - 📝 Add, edit, and delete tasks
 - ✅ Mark tasks as complete
-- 🔔 Set reminders with notifications
 - 🔄 Recurring reminders (daily, weekdays, weekly, monthly, yearly)
-- 🌓 Dark/Light mode
 - 📱 Fully responsive design
 - 💾 Local storage for data persistence
 - 🎨 Clean and modern UI
